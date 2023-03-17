@@ -3,6 +3,7 @@ package vm.erik.order_management_system_api.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -15,6 +16,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "order_id")
     private UUID orderId;
+    @Column(name = "date_of_submission", nullable = false)
+    private LocalDate dateOfSubmission;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
     private Customer customer;
