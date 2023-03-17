@@ -5,4 +5,5 @@ import vm.erik.order_management_system_api.model.Product;
 public interface ProductService {
 
     public Product saveProduct(Product product);
+    public Product findByName(String name);
 }

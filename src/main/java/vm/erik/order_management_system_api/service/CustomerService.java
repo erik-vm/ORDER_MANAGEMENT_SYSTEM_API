@@ -5,4 +5,7 @@ import vm.erik.order_management_system_api.model.Customer;
 public interface CustomerService {
 
     public Customer saveCustomer(Customer customer);
+    public Customer findByEmail(String email);
+
+
 }

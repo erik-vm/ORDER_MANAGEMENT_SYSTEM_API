@@ -3,9 +3,7 @@ package vm.erik.order_management_system_api.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Data
@@ -22,6 +20,6 @@ public class Product {
     private String skuCode;
     @Column(name = "unit_price", nullable = false)
     private double unitPrice;
-    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
-    private Set<Order> orders = new HashSet<>();
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
+    private List<Order> orders = new ArrayList<>();
 }
