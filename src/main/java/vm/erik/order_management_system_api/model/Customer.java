@@ -1,6 +1,7 @@
 package vm.erik.order_management_system_api.model;
 
 import ch.ascendise.Validator.Annotations.Email;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,5 +26,6 @@ public class Customer {
     @Column(nullable = false)
     private String telephone;
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 }

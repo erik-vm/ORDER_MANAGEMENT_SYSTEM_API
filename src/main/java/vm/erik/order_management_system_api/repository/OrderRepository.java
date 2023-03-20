@@ -16,8 +16,8 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
 
     List<Order> findAllByDateOfSubmission(LocalDate date);
 
-    @Query(value = "select * from orders where order_id in (select o.order_id from products_order as o where o.product_id=:productId)", nativeQuery = true)
-    List<Order> findAllByProductId(@Param("productId")UUID productId);
+    @Query(value = "select * from orders where order_id in (select po.order_id from products_order as po where po.product_id =:productId)", nativeQuery = true)
+    List<Order> findAllByOrdersContainingProductId(@Param("productId") UUID productId);
     @Query(value = "select o from Order as o where o.customer.customerId =:customerId")
     List<Order> findAllByCustomerId(@Param("customerId") UUID customerId);
 }

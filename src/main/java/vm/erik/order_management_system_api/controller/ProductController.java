@@ -1,9 +1,8 @@
 package vm.erik.order_management_system_api.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import vm.erik.order_management_system_api.dto.ProductDTO;
 import vm.erik.order_management_system_api.model.Product;
 import vm.erik.order_management_system_api.service.ProductService;
 
@@ -17,8 +16,13 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping("/{name}")
+    public ProductDTO findByName(@PathVariable("name") String name) {
+        return productService.findByName(name);
+    }
+
     @PostMapping
-    public Product saveProduct(@RequestBody Product product){
+    public ProductDTO saveProduct(@RequestBody ProductDTO product) {
         return productService.saveProduct(product);
     }
 }

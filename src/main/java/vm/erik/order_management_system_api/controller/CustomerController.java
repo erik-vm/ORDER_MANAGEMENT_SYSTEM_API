@@ -1,11 +1,8 @@
 package vm.erik.order_management_system_api.controller;
 
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import vm.erik.order_management_system_api.model.Customer;
+import org.springframework.web.bind.annotation.*;
+import vm.erik.order_management_system_api.dto.CustomerDTO;
 import vm.erik.order_management_system_api.service.CustomerService;
 
 @RestController
@@ -19,8 +16,13 @@ public class CustomerController {
     }
 
 
+    @GetMapping("/{email}")
+    public CustomerDTO findByEmail(@PathVariable("email")String email){
+        return customerService.findByEmail(email);
+    }
+
     @PostMapping
-    public Customer saveCustomer(@RequestBody Customer customer) {
+    public CustomerDTO saveCustomer(@RequestBody CustomerDTO customer) {
         return customerService.saveCustomer(customer);
     }
 

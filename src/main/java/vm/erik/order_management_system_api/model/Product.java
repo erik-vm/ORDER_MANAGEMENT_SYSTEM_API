@@ -1,5 +1,6 @@
 package vm.erik.order_management_system_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 

@@ -1,5 +1,6 @@
 package vm.erik.order_management_system_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class Order {
     private UUID orderId;
     @Column(name = "date_of_submission", nullable = false)
     private LocalDate dateOfSubmission;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
     private Customer customer;
     @ManyToMany

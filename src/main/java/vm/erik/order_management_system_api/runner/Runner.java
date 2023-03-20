@@ -2,6 +2,8 @@ package vm.erik.order_management_system_api.runner;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import vm.erik.order_management_system_api.dto.CustomerDTO;
+import vm.erik.order_management_system_api.dto.ProductDTO;
 import vm.erik.order_management_system_api.model.Customer;
 import vm.erik.order_management_system_api.model.Order;
 import vm.erik.order_management_system_api.model.Product;
@@ -37,21 +39,21 @@ public class Runner implements CommandLineRunner {
     }
 
     private void createCustomers() {
-        Customer johnDoe = new Customer();
+        CustomerDTO johnDoe = new CustomerDTO();
         johnDoe.setRegistrationCode("JD_001");
         johnDoe.setFullName("John Doe");
         johnDoe.setEmail("john.doe@mail.com");
         johnDoe.setTelephone("56556677");
         customerService.saveCustomer(johnDoe);
 
-        Customer maryJane = new Customer();
+        CustomerDTO maryJane = new CustomerDTO();
         maryJane.setRegistrationCode("MJ_001");
         maryJane.setFullName("Mary Jane");
         maryJane.setEmail("mary.jane@mail.com");
         maryJane.setTelephone("9911177");
         customerService.saveCustomer(maryJane);
 
-        Customer phoebeBuffet = new Customer();
+        CustomerDTO phoebeBuffet = new CustomerDTO();
         phoebeBuffet.setRegistrationCode("PB_001");
         phoebeBuffet.setFullName("Phoebe Buffet");
         phoebeBuffet.setEmail("phoebe.buffet@mail.com");
@@ -61,19 +63,19 @@ public class Runner implements CommandLineRunner {
     }
 
     private void createProducts() {
-        Product socks = new Product();
+        ProductDTO socks = new ProductDTO();
         socks.setProductName("Socks");
         socks.setSkuCode("SKS001");
         socks.setUnitPrice(1.59d);
         productService.saveProduct(socks);
 
-        Product sunglasses = new Product();
+        ProductDTO sunglasses = new ProductDTO();
         sunglasses.setProductName("Sunglasses");
         sunglasses.setSkuCode("SNG123");
         sunglasses.setUnitPrice(15.9d);
         productService.saveProduct(sunglasses);
 
-        Product hat = new Product();
+        ProductDTO hat = new ProductDTO();
         hat.setProductName("Hat");
         hat.setSkuCode("HT897");
         hat.setUnitPrice(19.9d);
@@ -81,12 +83,12 @@ public class Runner implements CommandLineRunner {
     }
 
     private void createOrders() {
-        Customer johnDoe = customerService.findByEmail("john.doe@mail.com");
-        Customer maryJane = customerService.findByEmail("mary.jane@mail.com");
-        Customer phoebeBuffet = customerService.findByEmail("phoebe.buffet@mail.com");
-        Product socks = productService.findByName("Socks");
-        Product sunglasses = productService.findByName("Sunglasses");
-        Product hat = productService.findByName("Hat");
+        CustomerDTO johnDoe = customerService.findByEmail("john.doe@mail.com");
+        CustomerDTO maryJane = customerService.findByEmail("mary.jane@mail.com");
+        CustomerDTO phoebeBuffet = customerService.findByEmail("phoebe.buffet@mail.com");
+        ProductDTO socks = productService.findByName("Socks");
+        ProductDTO sunglasses = productService.findByName("Sunglasses");
+        ProductDTO hat = productService.findByName("Hat");
 
         Order order1 = new Order();
         order1.setCustomer(johnDoe);
