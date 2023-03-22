@@ -4,12 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import vm.erik.order_management_system_api.dto.CustomerDTO;
 import vm.erik.order_management_system_api.dto.ProductDTO;
-import vm.erik.order_management_system_api.mapper.OrderLineMapper;
-import vm.erik.order_management_system_api.mapper.OrderMapper;
-import vm.erik.order_management_system_api.mapper.ProductMapper;
 import vm.erik.order_management_system_api.service.CustomerService;
-import vm.erik.order_management_system_api.service.OrderLineService;
-import vm.erik.order_management_system_api.service.OrderService;
 import vm.erik.order_management_system_api.service.ProductService;
 
 @Component
@@ -17,29 +12,16 @@ public class Runner implements CommandLineRunner {
 
     private final CustomerService customerService;
     private final ProductService productService;
-    private final OrderService orderService;
-    private final OrderLineService orderLineService;
-    private final OrderMapper orderMapper;
-    private final ProductMapper productMapper;
 
-    private final OrderLineMapper orderLineMapper;
-
-    public Runner(CustomerService customerService, ProductService productService, OrderService orderService, OrderLineService orderLineService, OrderMapper orderMapper, ProductMapper productMapper, OrderLineMapper orderLineMapper) {
+    public Runner(CustomerService customerService, ProductService productService) {
         this.customerService = customerService;
         this.productService = productService;
-        this.orderService = orderService;
-        this.orderLineService = orderLineService;
-        this.orderMapper = orderMapper;
-        this.productMapper = productMapper;
-        this.orderLineMapper = orderLineMapper;
     }
-
 
     @Override
     public void run(String... args) throws Exception {
         createCustomers();
         createProducts();
-        createOrdersAndAddThemToOrderLine();
     }
 
     private void createCustomers() {
@@ -86,8 +68,4 @@ public class Runner implements CommandLineRunner {
         productService.saveProduct(hat);
     }
 
-    private void createOrdersAndAddThemToOrderLine() {
-
-
-    }
 }

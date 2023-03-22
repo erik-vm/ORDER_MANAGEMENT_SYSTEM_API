@@ -14,14 +14,14 @@ public class OrderLineMapper {
         this.customerMapper = customerMapper;
     }
 
-    public OrderLineDTO fromOrderLineToOrderLineDTO(OrderLine orderLine){
+    public OrderLineDTO fromOrderLineToOrderLineDTO(OrderLine orderLine) {
         OrderLineDTO orderLineDTO = new OrderLineDTO();
         BeanUtils.copyProperties(orderLineDTO, orderLineDTO);
         orderLineDTO.setCustomer(customerMapper.fromCustomerToCustomerDTO(orderLine.getCustomer()));
         return orderLineDTO;
     }
 
-    public OrderLine fromOrderLineDTOtoOrderLine(OrderLineDTO orderLineDTO){
+    public OrderLine fromOrderLineDTOtoOrderLine(OrderLineDTO orderLineDTO) {
         OrderLine orderLine = new OrderLine();
         BeanUtils.copyProperties(orderLineDTO, orderLine);
         return orderLine;

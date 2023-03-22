@@ -1,10 +1,9 @@
 package vm.erik.order_management_system_api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.*;
+import java.util.UUID;
 
 @Entity
 @Data

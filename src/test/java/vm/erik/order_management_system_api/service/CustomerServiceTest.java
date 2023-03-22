@@ -15,6 +15,7 @@ class CustomerServiceTest {
     @Autowired
     private CustomerService underTest;
     CustomerDTO customerDTO;
+
     @BeforeEach
     void setUp() {
         customerDTO = new CustomerDTO();

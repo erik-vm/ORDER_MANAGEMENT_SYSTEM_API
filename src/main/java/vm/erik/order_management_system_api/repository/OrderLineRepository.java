@@ -13,6 +13,6 @@ import java.util.UUID;
 public interface OrderLineRepository extends JpaRepository<OrderLine, UUID> {
 
     @Query(value = "select ol from OrderLine as ol where ol.customer.customerId =:customerId")
-    List<OrderLine> getOrderLinesByCustomerId(@Param("customerId")UUID customerId);
+    List<OrderLine> getOrderLinesByCustomerId(@Param("customerId") UUID customerId);
 
 }

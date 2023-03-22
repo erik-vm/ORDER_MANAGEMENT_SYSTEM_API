@@ -1,11 +1,12 @@
 package vm.erik.order_management_system_api.model;
 
 import ch.ascendise.Validator.Annotations.Email;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data

@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class OrderLineNotFoundException extends EntityNotFoundException {
 
-    public OrderLineNotFoundException(UUID orderId){
+    public OrderLineNotFoundException(UUID orderId) {
         super(String.format("Order line with id: %s was not found!", orderId));
     }
 }

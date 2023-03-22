@@ -17,7 +17,7 @@ public class CustomerController {
 
 
     @GetMapping("/{email}")
-    public CustomerDTO findByEmail(@PathVariable("email")String email){
+    public CustomerDTO findByEmail(@PathVariable("email") String email) {
         return customerService.findByEmail(email);
     }
 

@@ -16,4 +16,4 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL)
     private Product product;
     private int quantity;
-    }
+}

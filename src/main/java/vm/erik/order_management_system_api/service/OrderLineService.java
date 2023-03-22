@@ -14,7 +14,6 @@ public interface OrderLineService {
 
     public void addOrderToOrderLineByOrderLineIdAndOrderId(UUID orderLineId, UUID orderId);
 
-
     List<OrderLineDTO> getOrderLinesByCustomerId(UUID customerId);
 
     List<OrderLineDTO> getOrderLinesByProductName(String name);

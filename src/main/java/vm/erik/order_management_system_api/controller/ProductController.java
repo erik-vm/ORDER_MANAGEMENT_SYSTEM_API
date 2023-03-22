@@ -1,9 +1,7 @@
 package vm.erik.order_management_system_api.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import vm.erik.order_management_system_api.dto.ProductDTO;
-import vm.erik.order_management_system_api.model.Product;
 import vm.erik.order_management_system_api.service.ProductService;
 
 @RestController
