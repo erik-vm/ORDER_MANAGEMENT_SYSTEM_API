@@ -8,16 +8,16 @@ import vm.erik.order_management_system_api.model.Order;
 @Service
 public class OrderMapper {
 
-    private final CustomerMapper customerMapper;
+    private final ProductMapper productMapper;
 
-    public OrderMapper(CustomerMapper customerMapper) {
-        this.customerMapper = customerMapper;
+    public OrderMapper(ProductMapper productMapper) {
+        this.productMapper = productMapper;
     }
 
     public OrderDTO fromOrderToOrderDTO(Order order) {
         OrderDTO orderDTO = new OrderDTO();
         BeanUtils.copyProperties(order, orderDTO);
-        orderDTO.setCustomer(customerMapper.fromCustomerToCustomerDTO(order.getCustomer()));
+        orderDTO.setProduct(productMapper.fromProductToProductDTO(order.getProduct()));
         return orderDTO;
     }
 

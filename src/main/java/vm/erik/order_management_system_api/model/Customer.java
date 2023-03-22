@@ -26,6 +26,5 @@ public class Customer {
     @Column(nullable = false)
     private String telephone;
     @OneToMany(mappedBy = "customer")
-    @JsonIgnore
-    private List<Order> orders = new ArrayList<>();
+    List<OrderLine> orderLines = new ArrayList<>();
 }

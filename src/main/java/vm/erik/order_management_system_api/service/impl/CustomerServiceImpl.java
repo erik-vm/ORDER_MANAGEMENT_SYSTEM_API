@@ -3,6 +3,7 @@ package vm.erik.order_management_system_api.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vm.erik.order_management_system_api.dto.CustomerDTO;
+import vm.erik.order_management_system_api.exeption.CustomerNotFoundException;
 import vm.erik.order_management_system_api.mapper.CustomerMapper;
 import vm.erik.order_management_system_api.model.Customer;
 import vm.erik.order_management_system_api.repository.CustomerRepository;
@@ -29,7 +30,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO findByEmail(String email) {
-        return customerMapper.fromCustomerToCustomerDTO(customerRepository.findByEmail(email));
+        CustomerDTO customerToFind = customerMapper.fromCustomerToCustomerDTO(customerRepository.findByEmail(email));
+
+        if (customerToFind == null) {
+            throw new CustomerNotFoundException(email);
+        }
+        return customerToFind;
     }
 
 

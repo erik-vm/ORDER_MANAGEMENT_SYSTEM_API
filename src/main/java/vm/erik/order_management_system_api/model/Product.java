@@ -21,6 +21,4 @@ public class Product {
     private String skuCode;
     @Column(name = "unit_price", nullable = false)
     private double unitPrice;
-    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
-    private List<Order> orders = new ArrayList<>();
 }

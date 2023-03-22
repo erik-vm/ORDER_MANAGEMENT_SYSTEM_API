@@ -3,6 +3,7 @@ package vm.erik.order_management_system_api.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vm.erik.order_management_system_api.dto.ProductDTO;
+import vm.erik.order_management_system_api.exeption.ProductNotFoundException;
 import vm.erik.order_management_system_api.mapper.ProductMapper;
 import vm.erik.order_management_system_api.model.Product;
 import vm.erik.order_management_system_api.repository.ProductRepository;
@@ -30,7 +31,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO findByName(String name) {
-        return productMapper.fromProductToProductDTO(productRepository.findByProductName(name));
+        ProductDTO productDTO = productMapper.fromProductToProductDTO(productRepository.findByProductName(name));
+        if (productDTO == null) {
+            throw new ProductNotFoundException(name);
+        }
+        return productDTO;
     }
 
 }

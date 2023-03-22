@@ -3,19 +3,21 @@ package vm.erik.order_management_system_api.runner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import vm.erik.order_management_system_api.dto.CustomerDTO;
+import vm.erik.order_management_system_api.dto.OrderDTO;
 import vm.erik.order_management_system_api.dto.ProductDTO;
-import vm.erik.order_management_system_api.model.Customer;
+import vm.erik.order_management_system_api.mapper.OrderLineMapper;
+import vm.erik.order_management_system_api.mapper.OrderMapper;
+import vm.erik.order_management_system_api.mapper.ProductMapper;
 import vm.erik.order_management_system_api.model.Order;
-import vm.erik.order_management_system_api.model.Product;
+import vm.erik.order_management_system_api.model.OrderLine;
 import vm.erik.order_management_system_api.service.CustomerService;
+import vm.erik.order_management_system_api.service.OrderLineService;
 import vm.erik.order_management_system_api.service.OrderService;
 import vm.erik.order_management_system_api.service.ProductService;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class Runner implements CommandLineRunner {
@@ -23,11 +25,20 @@ public class Runner implements CommandLineRunner {
     private final CustomerService customerService;
     private final ProductService productService;
     private final OrderService orderService;
+    private final OrderLineService orderLineService;
+    private final OrderMapper orderMapper;
+    private final ProductMapper productMapper;
 
-    public Runner(CustomerService customerService, ProductService productService, OrderService orderService) {
+    private final OrderLineMapper orderLineMapper;
+
+    public Runner(CustomerService customerService, ProductService productService, OrderService orderService, OrderLineService orderLineService, OrderMapper orderMapper, ProductMapper productMapper, OrderLineMapper orderLineMapper) {
         this.customerService = customerService;
         this.productService = productService;
         this.orderService = orderService;
+        this.orderLineService = orderLineService;
+        this.orderMapper = orderMapper;
+        this.productMapper = productMapper;
+        this.orderLineMapper = orderLineMapper;
     }
 
 
@@ -35,7 +46,7 @@ public class Runner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         createCustomers();
         createProducts();
-        createOrders();
+        createOrdersAndAddThemToOrderLine();
     }
 
     private void createCustomers() {
@@ -82,40 +93,8 @@ public class Runner implements CommandLineRunner {
         productService.saveProduct(hat);
     }
 
-    private void createOrders() {
-        CustomerDTO johnDoe = customerService.findByEmail("john.doe@mail.com");
-        CustomerDTO maryJane = customerService.findByEmail("mary.jane@mail.com");
-        CustomerDTO phoebeBuffet = customerService.findByEmail("phoebe.buffet@mail.com");
-        ProductDTO socks = productService.findByName("Socks");
-        ProductDTO sunglasses = productService.findByName("Sunglasses");
-        ProductDTO hat = productService.findByName("Hat");
+    private void createOrdersAndAddThemToOrderLine() {
 
-        Order order1 = new Order();
-        order1.setCustomer(johnDoe);
-        List<Product> order1Products = new ArrayList<>(List.of(socks, sunglasses, hat));
-        order1.setProducts(order1Products);
-        order1.setDateOfSubmission(LocalDate.now());
-        orderService.saveOrder(order1);
 
-        Order order2 = new Order();
-        order2.setCustomer(maryJane);
-        List<Product> order2Products = new ArrayList<>(List.of(socks, sunglasses, sunglasses));
-        order2.setProducts(order2Products);
-        order2.setDateOfSubmission(LocalDate.now());
-        orderService.saveOrder(order2);
-
-        Order order3 = new Order();
-        order3.setCustomer(phoebeBuffet);
-        List<Product> order3Products = new ArrayList<>(List.of(hat, hat, hat));
-        order3.setProducts(order3Products);
-        order3.setDateOfSubmission(LocalDate.now());
-        orderService.saveOrder(order3);
-
-        Order order4 = new Order();
-        order4.setCustomer(maryJane);
-        List<Product> order4Products = new ArrayList<>(List.of(socks, socks, sunglasses));
-        order4.setProducts(order4Products);
-        order4.setDateOfSubmission(LocalDate.now());
-        orderService.saveOrder(order4);
     }
 }
