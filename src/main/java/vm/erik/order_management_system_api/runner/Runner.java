@@ -3,21 +3,14 @@ package vm.erik.order_management_system_api.runner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import vm.erik.order_management_system_api.dto.CustomerDTO;
-import vm.erik.order_management_system_api.dto.OrderDTO;
 import vm.erik.order_management_system_api.dto.ProductDTO;
 import vm.erik.order_management_system_api.mapper.OrderLineMapper;
 import vm.erik.order_management_system_api.mapper.OrderMapper;
 import vm.erik.order_management_system_api.mapper.ProductMapper;
-import vm.erik.order_management_system_api.model.Order;
-import vm.erik.order_management_system_api.model.OrderLine;
 import vm.erik.order_management_system_api.service.CustomerService;
 import vm.erik.order_management_system_api.service.OrderLineService;
 import vm.erik.order_management_system_api.service.OrderService;
 import vm.erik.order_management_system_api.service.ProductService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class Runner implements CommandLineRunner {

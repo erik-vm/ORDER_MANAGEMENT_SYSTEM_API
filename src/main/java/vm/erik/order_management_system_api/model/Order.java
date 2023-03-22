@@ -3,8 +3,6 @@ package vm.erik.order_management_system_api.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,7 +13,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "order_id")
     private UUID orderId;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Product product;
     private int quantity;
     }

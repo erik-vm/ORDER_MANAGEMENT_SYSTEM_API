@@ -24,6 +24,7 @@ public class OrderMapper {
     public Order fromOrderDTOtoOrder(OrderDTO orderDTO) {
         Order order = new Order();
         BeanUtils.copyProperties(orderDTO, order);
+        order.setProduct(productMapper.fromProductDTOToProduct(orderDTO.getProduct()));
         return order;
     }
 }
